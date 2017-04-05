@@ -53,7 +53,7 @@
     	<get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
     		 dest="${ivy.jar.file}" usetimestamp="true"/>
     </target>
-    
+
     <!-- ================================= 
           target: install-ivy         
             this target is not necessary if you put ivy.jar in your ant lib directory
@@ -76,13 +76,13 @@
           target: go
                     Go ivy, go!
          ================================= -->
-    <target name="go" depends="install-ivy, generate-src" 
+    <target name="go" depends="install-ivy, generate-src, resolve" 
             description="--> resolve dependencies, compile and run the project">
 		<echo message="using ivy to resolve commons-lang 2.1..."/>
         <!-- here comes the magic line: asks ivy to resolve a dependency on 
              commons-lang 2.1 and to build an ant path with it from its cache  -->
-        <ivy:cachepath organisation="commons-lang" module="commons-lang" revision="2.1" 
-                       pathid="lib.path.id" inline="true"/>
+      <!--  <ivy:cachepath organisation="commons-lang" module="commons-lang" revision="2.1" 
+                       pathid="lib.path.id" inline="true"/> -->
         
 		<echo message="compiling..."/>
         <mkdir dir="${build.dir}" />
@@ -92,6 +92,15 @@
 We are now ready to execute our simple program with its dependency on commons-lang.
 Let's go!
 		</echo>
+        
+    </target>
+
+    <target name="resolve" >
+        <ivy:resolve/>
+            <ivy:cachepath pathid="lib.path.id"/>
+    </target>
+
+    <target name="run" depends="go" description="--> delocalisation de java">
         <java classname="example.Hello">
             <classpath>
                 <path refid="lib.path.id" />
