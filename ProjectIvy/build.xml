@@ -115,7 +115,7 @@ Let's go!
             source code to a file. In real life this file would already be
             present on your file system, and this target wouldn't be necessary.
          ================================= -->
-    <target name="generate-src">
+    <!--<target name="generate-src">
         <mkdir dir="${src.dir}/example" />
         <echo file="${src.dir}/example/Hello.java">
 package example;
@@ -131,7 +131,7 @@ public class Hello {
     }
 }
         </echo>
-    </target>
+    </target>-->
 	
     <!-- ================================= 
           target: clean              
