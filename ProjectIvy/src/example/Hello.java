@@ -1,5 +1,10 @@
 
 package example;
+import com.opencsv.*;
+import java.io.*;
+import org.apache.commons.lang.WordUtils;
+import java.util.*;
+import java.lang.*;
 
 import org.apache.commons.lang.WordUtils;
 
@@ -11,12 +16,24 @@ public class Hello {
                                 + " : " + WordUtils.capitalizeFully(message));
 
 
-        int monmax = 0;
-        CSVReader reader = new CSVReader(new FileReader("data.csv"));
-        List<String[]> myEntries = reader.readAll();
-        //parcourt
-        //System.out.println("Nombre lu :" + nb);
-
-    }
-}
-        
+        try
+        {
+          int monmax=0;
+          CSVReader csvReader = new CSVReader(new FileReader("data.csv"));
+          //System.out.println("test 1");
+          List content = csvReader.readAll();
+          //System.out.println("test 2");
+          String[] row;
+          for (Object object : content) {
+            //System.out.println("test "+monmax);
+              row = (String[]) object;
+              //System.out.println(row[0] + " # " + row[1] + " #  " + row[2]);
+              monmax++;
+          }
+          csvReader.close();
+          System.out.println("Nombre lu : "+monmax);
+        }
+        catch(FileNotFoundException e){}
+        catch(IOException e){}
+        }
+    }        
