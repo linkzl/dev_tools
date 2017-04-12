@@ -6,8 +6,18 @@ package lboury;
  */
 public class App 
 {
-    public static void main( String[] args )
+	public int max(int a, int b)
     {
-        System.out.println( "Hello World!" );
+    	//return a>b?a:b;
+		return a;//le stagiaire
     }
+	
+	public static void main( String[] args )
+    {
+        System.out.println( "Bonjour Monde !" );
+        App monApp = new App();
+        System.out.println(monApp.max(4,5));
+    }
+    
+    
 }
